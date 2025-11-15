@@ -86,6 +86,9 @@ Ele facilita o gerenciamento de **rotas (URLs)**, **requisições HTTP**, **midd
 
    ```bash
    npm install express
+
+
+   npm install --save-dev nodemon
    ```
 
    ✅ Isso faz o seguinte:
