@@ -45,41 +45,10 @@ app.get('/marmitas', function(req, res) {
     res.send(itensCardapio) 
 })
 
+app.get('/marmitas/:id', function (req, res){
+    let id =req.params.id
+    res.send(itensCardapio[id-1])
+})
 
-
-
-// app.get('/cardapio', function(req, res) {
-//     res.send(cardapio) 
-// })
-
-// app.get('/cardapio/tamanho', function(req, res) {
-//     res.send(`O tamanho do cardápio é ${cardapio.length}`)
-// })
-
-// app.get('/cardapio/:id', function(req, res) {
-//     const id = req.params.id
-//     res.send(cardapio[id - 1])
-// })
-
-// app.post('/cardapio/inserir', (req, res) => {
-//     const produto = req.body.produto.trim()
-//     cardapio.push(produto)
-//     res.send(`${produto} - Inserido com sucesso!`) 
-// })
-
-// app.put('/cardapio/editar/:id', (res, res) => {
-//     const id = req.params.id
-//     const nomeNovo = req.body.produto
-//     const nomeAntigo = cardapio[id - 1]
-//     cardapio[id - 1] = nomeNovo
-//     res.send(`${nomeAntigo} - Atualizado para - ${nomeNovo}`)
-// }) 
-
-// app.delete('/cardapio/apagar/:id', (req, res) => {
-//     const id = req.params.id
-//     const produto = cardapio[id - 1]
-//     cardapio.splice(id - 1, 1)
-//     res.send(`${produto} - Re,ovido com Sucesso!`)
-// })
 
 app.listen(3000)  
