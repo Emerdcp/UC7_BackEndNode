@@ -1,0 +1,16 @@
+{
+  "name": "2025.12.02_02gerenciadorpedidoslanche",
+  "version": "1.0.0",
+  "description": "Lanchonete",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index"
+  },
+  "author": "Emerson",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
