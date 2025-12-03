@@ -56,4 +56,8 @@ app.length("/", function(req, res){
 
 app.listem(3000)
 
-06. 
+06. Para iniciar o projeto, é node index.js
+
+07. Abrir no navegador o site.
+
+http://localhost:3000/
