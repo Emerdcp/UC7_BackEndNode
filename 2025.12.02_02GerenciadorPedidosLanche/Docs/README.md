@@ -39,11 +39,11 @@ Rodar os comandos para poder iniciar um projeto, rodar os camando a baixo.
 
 02. Control + ' = para poder mudar para CMD ou mudar para CMD
 
-03. npm init -y
+03. **npm init -y**
 
-04. npm npm install express
+04. npm **npm install express**
 
-05. Criar o arquivo index.js 
+05. Criar o arquivo **index.js**
 
 Criar um comando mínimo para iniciar
 
@@ -56,8 +56,23 @@ app.length("/", function(req, res){
 
 app.listem(3000)
 
-06. Para iniciar o projeto, é node index.js
+06. Para iniciar o projeto, é **node index.js**
 
 07. Abrir no navegador o site.
 
-http://localhost:3000/
+**http://localhost:3000/**
+
+08. Instalar o nodemon **npm install --save-dev nodemon**
+
+09. depois ir no arquivo package.json e acrescentar
+
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index"
+  },
+
+  10. Depois para poderar colocar **npm run dev** para iniciar o projeto
+
+
+  
