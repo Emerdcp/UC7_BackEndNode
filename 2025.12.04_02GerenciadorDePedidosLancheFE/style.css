@@ -1,0 +1,149 @@
+/* =============================
+   RESET BÁSICO
+============================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =============================
+   HERO BANNER COM FAIXA PRETA
+============================= */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 65vh;
+    background: url("img/foto-hero-burguer.jpeg") center center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+/* overlay escuro sobre a imagem */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0; 
+    background: rgba(0, 0, 0, 0.65); /* efeito de faixa preta transparente */
+}
+
+/* caixa com o texto da faixa */
+.hero-faixa {
+    position: relative;
+    text-align: center;
+    padding: 40px 20px;
+    color: #fff;
+    z-index: 10;
+}
+
+/* título */
+.hero-faixa h2 {
+    font-size: 2.8rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* subtítulo */
+.hero-faixa p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+
+/* =============================
+   ANIMAÇÕES GERAIS
+============================= */
+/* suavidade nos elementos animados */
+.card-produto,
+.card-produto img,
+.cabecalho .menu a {
+    transition: 0.3s ease-in-out;
+}
+
+
+/* =============================
+   MENU COM EFEITOS (HOVER)
+============================= */
+.cabecalho .menu a {
+    color: #fff;
+    font-weight: 600;
+    position: relative;
+    margin: 0 15px;
+    text-decoration: none;
+}
+
+/* underline animado */
+.cabecalho .menu a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0%;
+    height: 3px;
+    background: #ffc107; /* amarelo cheddar */
+    transition: width 0.3s ease-in-out;
+}
+
+.cabecalho .menu a:hover::after {
+    width: 100%;
+}
+
+/* mudança de cor do texto ao passar o mouse */
+.cabecalho .menu a:hover {
+    color: #ffc107;
+    font-weight: 700;
+}
+
+
+/* =============================
+   CARDS DE PRODUTO
+============================= */
+.card-produto {
+    background: #fff;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.25);
+    overflow: hidden; /* impede a imagem de sair do card */
+}
+
+/* MOVIMENTO AO PASSAR O MOUSE */
+.card-produto:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+}
+
+
+/* =============================
+   IMAGENS DENTRO DOS CARDS
+============================= */
+.card-produto img {
+    width: 100%;       /* imagem sempre preenche o card */
+    height: 250px;     /* tamanho uniforme para todas */
+    object-fit: cover; /* corta proporcionalmente e mantém bonito */
+    border-radius: 10px;
+}
+
+/* ZOOM SUAVE NA IMAGEM */
+.card-produto img:hover {
+    transform: scale(1.07);
+}
+
+
+/* =============================
+   TEXTO DO CARD
+============================= */
+.card-produto h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 12px;
+}
+
+.card-produto p {
+    font-size: 0.95rem;
+    opacity: 0.8;
+    margin: 8px 0;
+}
