@@ -1,14 +1,49 @@
 .lista-produtos .card-img-top {
-    height: 250px;
+    height: 220px;
     object-fit: cover;
 }
 
 .card {
-    height: 70vh;
+    height: 100%;
+    border-radius: 12px;
+    overflow: hidden;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    will-change: transform;
+    background-color: #f1ecec;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0,5rem;
+}
+
+.card-footer {
+    margin-top: auto;
+
 }
 
 .card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    transform: translateY(-6px);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
+}
+
+.lista-produtos .card-img-top{
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 220px;          /* altura fixa igual pra todas */
+    object-fit: cover;      /* corta sem distorcer */
+    object-position: center;
+    display: block;
+}
+
+
+.card-title{
+    text-align: center;
 }
