@@ -47,3 +47,17 @@
 ```sql
 "SELECT * FROM produtos ORDER BY avaliacao ASC"
 ```
+
+
+############
+Objetivo: criar uma para exibir em cards (com nome da unidade, foto, endereço, email, telefone) todas as 6 unidades
+
+1 - Duplicar a index.html e renomear para unidades.html
+
+2 - Duplicar o app.js e renomear para app-unidades.js
+
+3 - no index.js criar a rota /unidades
+
+4 - na rota /unidades fazer p select para retornar as unidades
+
+5 - fazer os ajustes em unides.html, app-unidades.js e index.js necessários para funcionar a o página unidades.html
