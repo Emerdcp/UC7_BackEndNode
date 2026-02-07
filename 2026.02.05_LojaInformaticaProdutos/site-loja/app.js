@@ -30,15 +30,43 @@ function fnMontarCardProduto(produto){
 }
 
 function fnCarregarDados(){
-    const parametros = new URLSearchParams(window.Location.search)
+    const parametros = new URLSearchParams(window.location.search)
+    
     const existe_categoria = parametros.has('categoria')
-
     let rota_categoria = ""
     if (existe_categoria) {
         rota_categoria = parametros.get('categoria') + "/"
     }
 
-    fetch('http://localhost:3000/produtos/' + rota_categoria, { method: 'GET'})
+    const existe_ordem = parametros.has('ordem')
+    let rota_ordem = ""
+    if (existe_ordem){
+        rota_ordem = parametros.get('ordem') + "/"
+    }
+    
+
+
+
+    const categoria = parametros.get('categoria') || ''
+    const links = document.querySelectorAll('#menuOrdenacao a')
+    links.forEach(link => {
+        const ordem = link.getAttribute('ordem')
+        link.href = 'produtos.html?categoria=' + categoria + '&ordem=' + ordem
+    })
+  
+    // links.forEach(link => {
+    // const ordem = link.getAttribute('ordem')
+    
+    //     if (categoria) {
+    //         link.href = 'produtos.html?categoria=' + categoria + '&ordem=' + ordem
+    //     } else {
+    //         link.href = 'produtos.html?ordem=' + ordem
+    //     }
+    // })
+
+
+
+    fetch('http://localhost:3000/produtos/' + rota_categoria + rota_ordem, { method: 'GET'})
     .then(response => response.json ())
     .then((produtos) => {
         produtos.forEach(produto => {

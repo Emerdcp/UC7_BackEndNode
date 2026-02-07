@@ -16,26 +16,33 @@
     <div class="container">
         <h1 class="text-center mb-5 mt-3">Lista de Produtos</h1>
 
-        <nav class="navbar">
-        <ul class="nav nav-tabs">
+        <ul class="nav nav-tabs" id="menuCategorias">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="produtos.html">Todos os produtos</a>
+                <a class="nav-link" href="produtos.html">Todos os produtos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="produtos.html?categoria=tenis">Tênis</a>
+                <a class="nav-link" href="produtos.html?categoria=tenis">Tênis</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="produtos.html?categoria=camisetas">Camisetas</a>
+                <a class="nav-link" href="produtos.html?categoria=camisetas">Camisetas</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="produtos.html?categoria=oculos">Óculos</a>
+                <a class="nav-link" href="produtos.html?categoria=oculos">Óculos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="unidades.html" tabindex="-1" aria-disabled="true">Unidades</a>
+                <a class="nav-link" href="unidades.html">Unidades</a>
             </li>
         </ul>
-        </nav>
 
+        <!-- <nav class="container mt-3" id="menuOrdenacao">
+            <a href="produtos.html?categoria=camisetas&ordem=preco">Ordenar pelo preço</a>
+            <a href="produtos.html?categoria=camisetas&ordem=titulo">Ordenar pelo titulo</a>
+        </nav> -->
+
+        <nav class="container mt-3" id="menuOrdenacao">
+            <a href="#" ordem="preco">Ordenar pelo preço</a>
+            <a href="#" ordem="titulo">Ordenar pelo titulo</a>
+        </nav>
 
         <div id="listaProduto" class="row lista-produtos"></div>
 

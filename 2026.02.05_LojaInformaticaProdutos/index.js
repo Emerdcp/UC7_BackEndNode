@@ -44,9 +44,11 @@ app.get("/produtos", function (req, res){
     })
 })
 
+
 app.get("/unidades", function (req, res){
     res.setHeader('Access-Control-Allow-Origin', '*')
-    conexao.query("SELECT * FROM unidades", function (erro, unidade, campos){
+    conexao.query("SELECT * FROM unidades", 
+        function (erro, unidade, campos){
         console.log(erro)
         console.log(unidade);
         res.send(unidade)
@@ -63,6 +65,45 @@ app.get("/produtos/:categoria", function (req, res){
             res.send(dados)
     })
 })
+
+app.get("/produtos/:categoria/:preco", function (req, res){
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    const categoria = req.params.categoria
+    const preco = req.params.preco
+    conexao.query(`SELECT * FROM produtos where categoria='${categoria}' ORDER BY ${preco}`,
+        function(erro, dados, campo){
+            res.send(dados)
+        }
+    )
+})
+
+app.get("/produtos/:categoria/:titulo", function (req, res){
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    const categoria = req.params.categoria
+    const titulo = req.params.titulo
+    conexao.query(`SELECT * FROM produtos where categoria='${categoria}' ORDER BY ${titulo}`,
+        function(erro, dados, campo){
+            res.send(dados)
+        }
+    )
+})
+
+
+
+
+
+// app.get("/produtos", function (req, res) {
+//     res.setHeader('Access-Control-Allow-Origin', '*')
+//     const ordem = req.query.ordem
+//     const colunasPermitidas = ["preco", "titulo"]
+//     const coluna = colunasPermitidas.includes(ordem) ? ordem : "titulo"
+
+//     conexao.query(`SELECT * FROM produtos ORDER BY ${coluna}`, (erro, dados) => {
+//         if (erro) return res.status(500).send({ erro: erro.message })
+//         res.send(dados)
+//     })
+// })
+
 
 app.listen (3000)
 
