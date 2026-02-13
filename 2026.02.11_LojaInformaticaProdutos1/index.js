@@ -41,8 +41,8 @@ app.get("/produtos", function (req, res){
     // res.setHeader('Access-Control-Allow-Origin', '*')
     // res.send(lista_produtos)
     conexao.query("SELECT * FROM produtos", function (erro, lista_produtos, campos){
-        console.log(erro)
-        console.log(lista_produtos);
+        // console.log(erro)
+        // console.log(lista_produtos);
         res.send(lista_produtos)
     })
 })
@@ -52,8 +52,8 @@ app.get("/unidades", function (req, res){
     // res.setHeader('Access-Control-Allow-Origin', '*')
     conexao.query("SELECT * FROM unidades", 
         function (erro, unidade, campos){
-        console.log(erro)
-        console.log(unidade);
+        // console.log(erro)
+        // console.log(unidade);
         res.send(unidade)
     })
 })
@@ -99,6 +99,21 @@ app.post("/produto/", function (req, res){
         values('${titulo}', '${foto}', '${descricao}', '${preco}', '${avaliacao}', '${categoria}')`,
         function (erro, resultado){
             if (erro) {
+                res.json(erro);
+            }
+            res.send(resultado.insertId);
+        });
+})
+
+//Enviar cadastro de Unidades
+app.post("/unidades/", function (req, res){
+    console.dir(req.body)    
+    const {nome_da_loja, telefone, email, endereco, latitude, longitude, foto} = req.body;
+    conexao.query(`
+        INSERT INTO unidades(nome_da_loja, telefone, email, endereco, latitude, longitude, foto)
+        values('${nome_da_loja}', '${telefone}', '${email}', '${endereco}', '${latitude}', '${longitude}', '${foto}')`,
+        function (erro, resultado){
+            if(erro) {
                 res.json(erro);
             }
             res.send(resultado.insertId);
