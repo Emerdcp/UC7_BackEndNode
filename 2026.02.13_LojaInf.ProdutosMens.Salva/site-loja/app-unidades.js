@@ -81,11 +81,6 @@ function fnCadastrarUnidades(){
     .then((dados) =>{
         fnLimparCampos()
         console.log(dados)
-        // Mensagem para apresentar quando cadastra
-        // const toastElement = document.getElementById('liveToast')
-        // const toast = new bootstrap.Toast(toastElement)
-        // toast.show()
-        fnMostrarToast()
     })
     .catch(erro => console.log(erro.message))
 }
@@ -100,15 +95,6 @@ foto.addEventListener("blur", function () {
 btn_salvar.addEventListener("click", function(){
     fnCadastrarUnidades()
 })
-
-// Mensagem para apresentar quando cadastra
-function fnMostrarToast(mensagem, tipo = "success") {
-    const toastElement = document.getElementById('liveToast')
-    toastElement.className = `toast text-bg-${tipo} border-0`
-    document.querySelector("#liveToast .toast-body").innerText = mensagem
-    const toast = new bootstrap.Toast(toastElement)
-    toast.show()
-}
 
 
 
