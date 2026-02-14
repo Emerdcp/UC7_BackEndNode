@@ -82,10 +82,9 @@ function fnCadastrarUnidades(){
         fnLimparCampos()
         console.log(dados)
         // Mensagem para apresentar quando cadastra
-        // const toastElement = document.getElementById('liveToast')
-        // const toast = new bootstrap.Toast(toastElement)
-        // toast.show()
-        fnMostrarToast()
+        const toastElement = document.getElementById('liveToast')
+        const toast = new bootstrap.Toast(toastElement)
+        toast.show()
     })
     .catch(erro => console.log(erro.message))
 }
