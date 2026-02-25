@@ -15,7 +15,7 @@ function fnMontarCardProduto(produto){
                                 <i class="bi bi-star-fill text-warning"></i>
                                 <i class="bi bi-star-fill text-warning"></i>
                                 <i class="bi bi-star text-warning"></i>
-                                <small class="text-muted">(${produto.avaliacao})</small>
+                                <small class="text-muted">${produto.avaliacao}</small>
                             </div>
                         </div>
                     </div>
@@ -44,6 +44,8 @@ function fnCarregarDados(){
         rota_ordem = parametros.get('ordem') + "/"
     }
     
+
+
 
     const categoria = parametros.get('categoria') || ''
     const links = document.querySelectorAll('#menuOrdenacao a')
@@ -74,67 +76,6 @@ function fnCarregarDados(){
     .catch(erro => console.log(erro.message))
 }
 
-function fnAlterarFoto(){
-    if (foto.value != ''){
-        document.getElementById("fundo-imagem").style.backgroundImage = `url('${foto.value}')`
-    }else{
-        document.getElementById("fundo-imagem").style.backgroundImage = `url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnDZXH0y8lVWm9NouTeALHsmyUkECuLNm5XA&s)`
-    }
-    console.log(foto.value)
-}
-
-function fnLimparCampos(){
-    document.getElementById("form-produtos").reset()
-}
-
-function fnCadastrarProdutos(){
-    let formDados = {
-        titulo: document.getElementById("titulo").value,
-        categoria: document.getElementById("categoria").value,
-        descricao: document.getElementById("descricao").value,
-        preco: Number(document.getElementById("preco").value),
-        avaliacao: Number(document.getElementById("avaliacao").value),
-        foto: document.getElementById("foto").value
-    }
-    console.dir(formDados)
-
-    fetch('http://localhost:3000/produtos', {
-        method: 'POST',
-        headers: {'Content-type': 'application/json'},
-        body: JSON.stringify(formDados)
-    })
-
-    .then(resposta => resposta.json())
-    .then((dados) =>{
-        fnLimparCampos()
-        console.log(dados)
-        // Mensagem para apresentar quando cadastra
-        const toastElement = document.getElementById('liveToast')
-        const toast = new bootstrap.Toast(toastElement)
-        toast.show()
-    })
-    .catch(erro => console.log(erro.message))
-}
-
-let foto = document.getElementById("foto")
-let btn_salvar = document.getElementById("btn-salvar-produtos")
-
-foto.addEventListener("blur", function () {
-    fnAlterarFoto()
-})
-
-btn_salvar.addEventListener("click", function(){
-    fnCadastrarProdutos()
-})
-
-// Mensagem para apresentar quando cadastra
-function fnMostrarToast(mensagem, tipo = "success") {
-    const toastElement = document.getElementById('liveToast')
-    toastElement.className = `toast text-bg-${tipo} border-0`
-    document.querySelector("#liveToast .toast-body").innerText = mensagem
-    const toast = new bootstrap.Toast(toastElement)
-    toast.show()
-}
 
 
 fnCarregarDados()
