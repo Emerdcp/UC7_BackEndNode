@@ -55,6 +55,8 @@ function fnAlterarFoto(){
     console.log(foto.value)
 }
 
+
+
 function fnLimparCampos(){
     document.getElementById("form-unidades").reset()
 }
@@ -77,12 +79,12 @@ function fnCadastrarUnidades(){
         body: JSON.stringify(formDados)
     })
 
-    .then(resposta => resposta.json())
-    .then((dados) =>{
-        fnLimparCampos()
-        console.log(dados)
-    })
-    .catch(erro => console.log(erro.message))
+        .then(resposta => resposta.json())
+        .then((dados) =>{
+            fnLimparCampos()
+            console.log(dados)
+        })
+        .catch(erro => console.log(erro.message))
 }
 
 let foto = document.getElementById("foto")

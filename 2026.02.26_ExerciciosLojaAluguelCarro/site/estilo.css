@@ -49,13 +49,13 @@ table {
 
 
 body{
-    background-color: #ffc107;
-    font-family: Arial;
+    background-color: #ffc107 !important;
+    font-family: Arial !important;
 }
 
 #col1{
-    background-color: white;
-    width:400px;
+    background-color: white !important;
+    width:400px !important;
     text-align: center;
     padding: 10px 38px 38px 38px;
     box-shadow: 0px 4px 4px 0 rgba(0, 0, 0, 0.5);
@@ -135,4 +135,159 @@ body{
     align-items: center;
     justify-content: center;
     height: 100vh;
+}
+
+
+/* ####################### MENU */
+
+.navbar {
+    background-color: white;
+    padding: 15px 30px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-nav {
+    display: flex;
+    justify-content: flex-end;
+    gap: 30px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: black;
+    font-weight: normal;
+    font-size: 16px;
+    position: relative;
+    transition: all 0.3s ease;
+    padding: 5px 0;
+}
+
+.nav-link:hover {
+    color: #FFC107;
+    font-weight: bold;
+}
+
+.nav-link::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 3px;
+    left: 0;
+    bottom: -5px;
+    background-color: #FFC107;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.navbar {
+    background-color: white;
+    padding: 15px 30px;
+}
+
+.navbar-nav {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #434343;
+    font-weight: bold;
+}
+
+.nav-link:hover {
+    color: #FFC107 !important;
+}
+
+.navbar-toggler {
+    display: none;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.nav-link:active {
+    transform: scale(0.95);
+}
+
+body {
+    padding-top: 80px;
+}
+
+
+
+
+/* ####################### MODAL LOGIN USUARIO */
+
+.modal-sistema {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal-content-login {
+    background: white !important;
+    padding: 25px;
+    border-radius: 8px;
+    width: 350px;
+    max-width: 90%;
+}
+
+@keyframes aparecer {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.btn-amarelo {
+    background-color: #FFC107 !important;
+    color: white;
+    border: none;
+    font-weight: bold;
+    transition: 0.3s ease;
+}
+
+.btn-amarelo:hover {
+    background-color: #e0a800 !important; /* amarelo mais escuro */
+    color: white;
+}
+
+.btn-amarelo:active {
+    transform: scale(0.97);
+}
+
+/* ####################### RESPONVISO */
+@media (max-width: 768px) {
+
+    .navbar-nav {
+        display: none;
+        flex-direction: column;
+        background-color: white;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        padding: 15px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .navbar-nav.ativo {
+        display: flex;
+    }
+
+    .navbar-toggler {
+        display: block;
+    }
 }
