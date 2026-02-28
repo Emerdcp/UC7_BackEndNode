@@ -17,7 +17,8 @@ CREATE TABLE veiculos (
     marca VARCHAR(150) NOT NULL,
     placa VARCHAR(8) NOT NULL UNIQUE,
     categoria CHAR(1) NOT NULL COMMENT 'B = Basico | L = Luxo | F = Família',
-    valor_diaria DECIMAL(10,2) NOT NULL
+    valor_diaria DECIMAL(10,2) NOT NULL,
+    imagem VARCHAR(255) NOT NULL
 );
 
 -- AGENDAMENTOS

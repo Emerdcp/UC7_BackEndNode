@@ -13,24 +13,19 @@
 <body>
 
     <div class="d-flex">
-
         <div class="bg-dark text-white p-3" style="width:250px; min-height:100vh;">
             <h4 class="text-center">Sistema</h4>
             <hr>
-
             <ul class="nav flex-column">
                 <li class="nav-item">
                     <a href="usuarios.html" class="nav-link text-white">Usuários</a>
                 </li>
-
                 <li class="nav-item">
                     <a href="veiculos.html" class="nav-link text-white">Veículos</a>
                 </li>
-
                 <li class="nav-item">
                     <a href="agendamentos.html" class="nav-link text-white">Agendamentos</a>
                 </li>
-
                 <li class="nav-item mt-4">
                     <a href="index.html" class="nav-link text-danger">Sair</a>
                 </li>
@@ -40,11 +35,57 @@
         <div class="p-4 flex-fill">
             <h2>Cadastro de Veículos</h2>
 
-        </div>
+            <button class="btn btn-primary mb-3" onclick="abrirModalVeiculo()">
+                Cadastrar Veículo
+            </button>
 
+            <div class="row" id="veiculos"></div>
+
+        </div>
     </div>
 
-    <script src="veiculos.js"></script>
+    <form class="veiculos" id="formVeiculo">
+        <div id="modalVeiculo" class="modal-sistema hidden">
+            <div class="modal-content">
+                
+                <h4>Novo Veículo</h4>
+                
+                <input type="hidden" id="id">
+                
+                <div class="mb-3">
+                    <label>Modelo</label>
+                    <input type="text" id="modelo" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label>Marca</label>
+                    <input type="text" id="marca" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label>Placa</label>
+                    <input type="text" id="placa" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label>Categoria</label>
+                    <select id="categoria" class="form-select">
+                        <option value="B">Básico</option>
+                        <option value="L">Luxo</option>
+                        <option value="F">Família</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label>Valor Diária</label>
+                    <input type="number" id="valor_diaria" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label>Imagem (URL)</label>
+                    <input type="text" id="imagem" class="form-control">
+                </div>
+                <button class="btn btn-success" type="button" id="salvar-veiculo">Salvar</button>
+            </div>
+        </div>
+    </form>
+
+    <script src="app-veiculos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>

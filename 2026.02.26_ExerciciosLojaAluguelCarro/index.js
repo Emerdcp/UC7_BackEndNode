@@ -58,6 +58,22 @@ app.post("/agendamentos/", function (req, res) {
     )
 })
 
+// CADASTRO VEÍCULOS
+app.post("/veiculos/", function (req, res) {
+    const dados = req.body;
+    conexao.query(`
+        INSERT INTO veiculos(modelo, marca, placa, categoria, valor_diaria, imagem)
+            values ('${dados.modelo}', '${dados.marca}', '${dados.placa}', 
+                    '${dados.categoria}', '${dados.valor_diaria}', '${dados.imagem}')`,
+        function (erro, resultado) {
+            if (erro) {
+                res.json(erro);
+            }
+            res.send(resultado.insertId);
+        }
+    )
+})
+
 
 
 
