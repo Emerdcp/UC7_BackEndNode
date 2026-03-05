@@ -5,6 +5,7 @@ const cors = require('cors')
 const { json } = require('body-parser')
 app.use(cors())
 app.use(express.json())
+const bcrypt = require('bcrypt')
 
 app.get('/', function (req, res) {
     res.send ('aluguelcarro')
@@ -29,16 +30,6 @@ conexao.connect(function (erro) {
 })
 
 
-// VERIFICAÇÃO COM TABELA VEICULOS
-app.get("/veiculos", function (req, res) {
-    conexao.query("SELECT * FROM veiculos",
-        function (erro, veiculo, campo) {
-            console.log(erro)
-            console.log(veiculo)
-            res.send(veiculo)
-        })
-})
-
 // CADASTRO AGENDAMENTOS
 app.post("/agendamentos/", function (req, res) {
     // const {nome_cliente, email_cliente, veiculo_id, categoria} = req.body;
@@ -58,6 +49,18 @@ app.post("/agendamentos/", function (req, res) {
     )
 })
 
+// VERIFICAÇÃO COM TABELA USUÁRIO
+app.get("/agendamentos", function (req,res){
+    conexao.query("SELECT * FROM agendamentos",
+        function (erro, agendamento, campo) {
+            console.log(erro)
+            console.log(agendamento)
+            res.send(agendamento)
+        })
+});
+
+
+
 // CADASTRO VEÍCULOS
 app.post("/veiculos/", function (req, res) {
     const dados = req.body;
@@ -74,53 +77,84 @@ app.post("/veiculos/", function (req, res) {
     )
 })
 
+// VERIFICAÇÃO COM TABELA VEICULOS
+app.get("/veiculos", function (req, res) {
+    conexao.query("SELECT * FROM veiculos",
+        function (erro, veiculo, campo) {
+            console.log(erro)
+            console.log(veiculo)
+            res.send(veiculo)
+        })
+})
 
 
 
 
+// CADASTRO USUÁRIO
+app.post("/usuarios/", async function (req, res) {
+    const dados = req.body;
+    console.dir(dados)
+    try{ 
+        const senhaHash = await bcrypt.hash(dados.senha, 10)
+        console.log(senhaHash)
+        conexao.query(`
+            INSERT INTO usuarios(nome, email, senha, nivel_acesso)
+                values ('${dados.nome}', '${dados.email}', '${senhaHash}' , '${dados.nivel_acesso}')`,
+            function (erro, resultado) {
+                if (erro) {
+                    res.json(erro);
+                }
+                res.send(resultado.insertId);
+            }
+        );
+    } catch (erro) {
+        res.status(500).json({ erro: "Erro ao criptografar senha" });
+    }
+})
+
+// VERIFICAÇÃO COM TABELA USUÁRIO
+app.get("/usuarios",(req,res)=>{
+    conexao.query("SELECT * FROM usuarios",
+        function (erro, usuario, campo) {
+            console.log(erro)
+            console.log(usuario)
+            res.send(usuario)
+        })
+
+});
 
 
 
-
-
-
-
-
-
-
-
-// const bcrypt = require("bcryptjs");
-
-// app.post("/login", (req, res) => {
-
-//     const { email, senha } = req.body;
-
-//     const sql = "SELECT * FROM usuarios WHERE login = ?";
-
-//     db.query(sql, [email], async (err, result) => {
-
-//         if (err) {
-//             return res.status(500).json({ erro: "Erro no servidor" });
-//         }
-
-//         if (result.length === 0) {
-//             return res.status(401).json({ erro: "Usuário não encontrado" });
-//         }
-
-//         const usuario = result[0];
-
-//         const senhaValida = await bcrypt.compare(senha, usuario.senha);
-
-//         if (!senhaValida) {
-//             return res.status(401).json({ erro: "Senha incorreta" });
-//         }
-
-//         res.json({
-//             mensagem: "Login realizado com sucesso",
-//             nivel: usuario.nivel_acesso
-//         });
-//     });
-// });
+//LOGIN
+app.post("/login", async function (req, res) {
+    const { email, senha } = req.body;
+    try {
+        conexao.query(
+            "SELECT * FROM usuarios WHERE email = ?",
+            [email],
+            async function (erro, resultado) {
+                if (erro) {
+                    return res.status(500).json(erro);
+                }
+                if (resultado.length === 0) {
+                    return res.status(401).json({ erro: "Usuário não encontrado" });
+                }
+                const usuario = resultado[0];
+                const senhaValida = await bcrypt.compare(senha, usuario.senha);
+                if (!senhaValida) {
+                    return res.status(401).json({ erro: "Senha incorreta" });
+                }
+                res.json({
+                    mensagem: "Login realizado com sucesso",
+                    usuario: usuario.nome,
+                    nivel: usuario.nivel_acesso
+                });
+            }
+        );
+    } catch (erro) {
+        res.status(500).json({ erro: "Erro no servidor" });
+    }
+});
 
 
 

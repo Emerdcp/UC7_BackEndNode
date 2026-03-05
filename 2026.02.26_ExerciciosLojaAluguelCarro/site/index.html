@@ -48,11 +48,14 @@
                 <label class="rotulo">E-mail</label>
                 <input type="email" class="campo-texto" id="email_cliente">
 
-                <label class="rotulo">Selecione o tipo de veículo</label>
+                <!-- <label class="rotulo">Selecione o tipo de veículo</label>
                 <select class="campo-texto" id="categoria">
                     <option>Básico</option>
                     <option>Família</option>
                     <option>Luxo</option>
+                </select> -->
+                <select class="campo-texto" id="veiculo_id">
+                    <option value="">Selecione um veículo</option>
                 </select>
 
                 <button type="button" id="salvar-agendamento" class="botao-reservar">FAZER MINHA RESERVA</button>
@@ -89,6 +92,8 @@
                     Cancelar
                 </button>
             </div>
+
+            <div id="mensagemLogin" class="alert alert-danger d-none"></div>
 
         </div>
     </div>
