@@ -1,37 +1,4 @@
 2026.02.26_ExerciciosLojaAluguelCarro
-│
-├── server.js
-├── package.json
-│
-├── config/
-│   └── db.js
-│
-├── routes/
-│   ├── veiculos.js
-│   └── agendamentos.js
-│
-├── controllers/
-│   ├── veiculosController.js
-│   └── agendamentosController.js
-│
-└── public/
-    ├── index.html
-    ├── veiculos.html
-    └── script.js
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

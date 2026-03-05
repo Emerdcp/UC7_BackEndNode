@@ -65,6 +65,19 @@ function fnCarregarVeiculos(){
 
 fnCarregarVeiculos();
 
+// Atualizar agendamento
+app.put("/agendamentos/:id", (req, res) => {
+  const { id } = req.params;
+  const { nome_cliente } = req.body;
+
+  db.run(`UPDATE agendamentos SET nome_cliente = ? WHERE id = ?`,
+    [nome_cliente, id],
+    function(err) {
+      if (err) return res.status(500).json({ erro: err.message });
+      res.json({ mensagem: "Agendamento atualizado com sucesso!" });
+    }
+  );
+});
 
 async function fazerLogin() {
     const email = document.getElementById("login_email").value;
