@@ -100,3 +100,11 @@ function mostrarMensagem(texto, tipo = "danger") {
   msg.innerText = texto;
   msg.classList.remove("d-none");
 }
+
+
+if (resposta.ok) {
+    localStorage.setItem("usuario", dados.usuario);
+    localStorage.setItem("nivel", dados.nivel);
+    
+    window.location.href = "dashboard.html";
+}

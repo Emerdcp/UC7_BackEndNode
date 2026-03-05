@@ -1,3 +1,9 @@
+const nivel = localStorage.getItem("nivel");
+if(nivel === "O"){
+    document.getElementById("salvar-veiculo").style.display = "none";
+}
+
+
 function abrirModalVeiculo() {
     document.getElementById("modalVeiculo").classList.remove("hidden");
 }
@@ -19,6 +25,8 @@ function fnLimparCampos() {
 }
 
 function fnCadastrarVeiculo() {
+    let id = document.getElementById("id").value;
+
     let formDados = {
         modelo: document.getElementById("modelo").value,
         marca: document.getElementById("marca").value,
@@ -29,8 +37,18 @@ function fnCadastrarVeiculo() {
     }
     // console.dir(formDados)
 
-    fetch('http://localhost:3000/veiculos', {
-        method: 'POST',
+    let metodo = "POST";
+    let url = "http://localhost:3000/veiculos";
+
+    if (id) {
+        metodo = "PUT";
+        url = `http://localhost:3000/veiculos/${id}`;
+    }
+
+    fetch(url, {
+        // fetch('http://localhost:3000/veiculos', {
+        // method: 'POST',
+        method: metodo,
         headers: { 'Content-type': 'application/json' },
         body: JSON.stringify(formDados)
     })
@@ -40,6 +58,9 @@ function fnCadastrarVeiculo() {
             fnLimparCampos()
             fecharModalVeiculo()
             console.log(dados)
+
+            document.getElementById("veiculos").innerHTML = ""
+            fnCarregarVeiculos()
         })
         .catch(erro => console.log(erro.message))
 }
@@ -61,6 +82,9 @@ function fnMontarCardVeiculos(veiculo) {
                 <p><strong>Valor:</strong> R$ ${veiculo.valor_diaria}</p>
                 <p><strong>Categoria:</strong> ${veiculo.categoria}</p>
                 ${veiculo.imagem ? `<img src="${veiculo.imagem}" class="card-img-top mt-2">` : ""}
+                ${localStorage.getItem("nivel") === "A" ? 
+                    `<button class="btn btn-warning mt-2" onclick="fnEditarVeiculo(${veiculo.id})">Editar</button>` 
+                : ""}
             </div>
         </div>
     </div>
@@ -68,16 +92,44 @@ function fnMontarCardVeiculos(veiculo) {
     document.getElementById("veiculos").innerHTML += cartao;
 }
 
-function fnCarregarVeiculos(){
-    fetch('http://localhost:3000/veiculos/', { method: 'GET'})
-    .then(response => response.json())
-    .then((veiculos) => {
-        veiculos.forEach(veiculo => {
-            fnMontarCardVeiculos(veiculo)
-        });
-    })
-    .catch(erro => console.log(erro.message))
+function fnCarregarVeiculos() {
+    fetch('http://localhost:3000/veiculos/', { method: 'GET' })
+        .then(response => response.json())
+        .then((veiculos) => {
+            veiculos.forEach(veiculo => {
+                fnMontarCardVeiculos(veiculo)
+            });
+        })
+        .catch(erro => console.log(erro.message))
 }
+
+
+function fnEditarVeiculo(id) {
+
+    if (!id) {
+        console.error("ID do veículo não encontrado");
+        return;
+    }
+
+    fetch(`http://localhost:3000/veiculos/${id}`)
+        .then(response => response.json())
+        .then((veiculo) => {
+
+            document.getElementById("id").value = veiculo.id;
+            document.getElementById("modelo").value = veiculo.modelo;
+            document.getElementById("marca").value = veiculo.marca;
+            document.getElementById("placa").value = veiculo.placa;
+            document.getElementById("categoria").value = veiculo.categoria;
+            document.getElementById("valor_diaria").value = veiculo.valor_diaria;
+            document.getElementById("imagem").value = veiculo.imagem;
+
+            abrirModalVeiculo();
+
+        })
+        .catch(erro => console.log(erro));
+
+}
+
 
 fnCarregarVeiculos()
 

@@ -89,6 +89,54 @@ app.get("/veiculos", function (req, res) {
 
 
 
+// ATUALIZA CADASTRO VEICULO
+app.put("/veiculos/:id", function(req,res){
+    const id = req.params.id
+    const dados = req.body
+    conexao.query(
+        `UPDATE veiculos SET 
+        modelo = ?, 
+        marca = ?, 
+        placa = ?, 
+        categoria = ?, 
+        valor_diaria = ?, 
+        imagem = ?
+        WHERE id = ?`,
+        [
+            dados.modelo,
+            dados.marca,
+            dados.placa,
+            dados.categoria,
+            dados.valor_diaria,
+            dados.imagem,
+            id
+        ],
+        function(erro,resultado){
+            if(erro){
+                return res.json(erro)
+            }
+            res.json({alterado:true})
+        }
+    )
+})
+
+app.get("/veiculos/:id", function(req,res){
+    const id = req.params.id
+    conexao.query(
+        "SELECT * FROM veiculos WHERE id = ?",
+        [id],
+        function(erro,resultado){
+            if(erro){
+                return res.json(erro)
+            }
+            res.json(resultado[0])
+        }
+    )
+})
+
+
+
+
 
 // CADASTRO USUÁRIO
 app.post("/usuarios/", async function (req, res) {
