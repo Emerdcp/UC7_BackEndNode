@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "bright": "^1.0.0",
+    "cowsay": "^1.6.0",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "nodemon": "^3.1.14",
+    "progress": "^2.0.3"
+  },
+  "name": "2026.03.05_variaveisambiente",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
