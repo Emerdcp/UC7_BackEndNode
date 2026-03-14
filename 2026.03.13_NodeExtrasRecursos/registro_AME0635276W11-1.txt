@@ -1,0 +1,7 @@
+
+    Nome do Host: AME0635276W11-1
+    Memória Total: 15.82 GB
+    Sistema Operacional: Windows_NT
+    Usuário Ativo: emerson.cpinto
+    Quantidade de PCUs: 6
+    Modelo da CPU: Intel(R) Core(TM) i5-9500 CPU @ 3.00GHz

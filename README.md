@@ -77,6 +77,8 @@ Ele facilita o gerenciamento de **rotas (URLs)**, **requisições HTTP**, **midd
 2. **Inicie um projeto Node.js**
 
    ```bash
+   npm i
+   npm install
    npm init -y
    ```
 
@@ -135,7 +137,7 @@ app.listen(PORT, () => {
 });
 ```
 
-Execute com:
+Execute com no terminal
 
 ```bash
 node index.js
